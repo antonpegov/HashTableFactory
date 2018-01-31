@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hash Table JS Realisation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-with-addons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script> -->
+    <!-- <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="./ht.js"></script> 
+    <script type="text/babel" src="./hash-item.component.jsx"></script>
+    <script type="text/babel" src="./hash-list.component.jsx"></script>
+  </head>
+  <body>
+    <h3>You can test HashTable factory function in the console.</h3>
+    <p>One example object already created with name 'h'.</p>
+    <div id="root"></div>
+    <script type="text/babel">
+      // create example
+      let h = HashTable(10);
+      h.insert('Anton', {age: 39});
+      h.retrieveAll();
+      // render example
+      ReactDOM.render(
+        <HashList hashTable = {h} />,
+        document.getElementById('root')
+      );
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      To set up a production-ready React build environment, follow these instructions:
+      * https://reactjs.org/docs/add-react-to-a-new-app.html
+      * https://reactjs.org/docs/add-react-to-an-existing-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      * https://reactjs.org/docs/react-without-jsx.html
+      * https://reactjs.org/docs/cdn-links.html
+    -->
+  </body>
+<body>
 </body>
 </html>
