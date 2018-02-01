@@ -1,7 +1,7 @@
 class AddItem extends React.Component {
   constructor(props) {
     super();
-    this.state = {name: '', age: ''}
+    this.state = this.initialState = {name: '', age: ''};
   }
 
   render() {
@@ -28,6 +28,7 @@ class AddItem extends React.Component {
     let name = this.state.name;
     let value = {age: this.state.age};
     this.props.hashTable.insert(name, value);
+    this.reset();
     this.props.refresher();
     event.preventDefault();
     console.log(this);
@@ -38,4 +39,6 @@ class AddItem extends React.Component {
     newState[event.target.name] = event.target.value; // to identify input source
     this.setState(prevState => Object.assign({}, prevState, newState));
   }
+
+  reset = () => this.setState(this.initialState);
 }
