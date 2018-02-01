@@ -3,29 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hash Table JS Realisation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-with-addons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-    <!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script> -->
-    <!-- <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="./ht.js"></script> 
+    <script type="text/babel" src="./add-item.component.jsx"></script>
     <script type="text/babel" src="./hash-item.component.jsx"></script>
     <script type="text/babel" src="./hash-list.component.jsx"></script>
   </head>
-  <body>
+  <body class="jumbotron">
     <h3>You can test HashTable factory function in the console.</h3>
-    <p>One example object already created with name 'h'.</p>
+    <p>One example object already created in global scope with name 'h'. Here is simple GUI to access it:</p>
     <div id="root"></div>
     <script type="text/babel">
-      // create example
+      // create example object
       let h = HashTable(10);
       h.insert('Anton', {age: 39});
       h.retrieveAll();
-      // render example
-      ReactDOM.render(
-        <HashList hashTable = {h} />,
-        document.getElementById('root')
-      );
+      // render example 
+      onChange();
+      function onChange(){
+        ReactDOM.render(
+          <div className="card">
+            <div className="card-header">
+              <AddItem hashTable = {h}  refresher={onChange}/>
+            </div>
+            <div className="card-body">
+              <HashList hashTable = {h} />
+            </div>
+            <div className="card-footer">
+              <b>Inside:</b> {JSON.stringify(h.retrieveAll())}
+            </div>
+          </div>,
+          document.getElementById('root')
+        );
+      }
 
     </script>
     <!--
